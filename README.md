@@ -1,7 +1,7 @@
 # Engenharia de Software
 
 Aluno: Felipe Pedreli<p>
-Algoritmo Genético para resolver o problema da mochila<p>
+**Algoritmo Genético para resolver o problema da mochila.**<p>
 
 Problema: Você ficará isolado na natureza selvagem. A única coisa que você poderá levar é uma mochila que suporta no máximo 30 kg.<p>
 
