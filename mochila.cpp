@@ -16,14 +16,14 @@ struct item{
 struct individuo {
     float peso;
     float beneficio;
-    int pertinencia[29];
+    int pertinencia[6];
 };
 
 //FUNCAO AUXILIAR PARA CALCULAR PESO
 float calc_peso(item itens[], individuo ind){
     int i;
     float peso_retorno = 0.0;
-    for (i = 0; i < 29; i++){
+    for (i = 0; i < 6; i++){
         if (ind.pertinencia[i] == 1){
             peso_retorno += itens[i].peso;
         }
@@ -35,7 +35,7 @@ float calc_peso(item itens[], individuo ind){
 float calc_beneficio(item itens[], individuo ind){
     int i;
     float beneficio = 0.0;
-    for (i = 0; i < 29; i++){
+    for (i = 0; i < 6; i++){
         if (ind.pertinencia[i] == 1){
             beneficio += itens[i].beneficio;
         }
@@ -57,7 +57,7 @@ individuo gerar_individuo(item itens[]){
     int i;
 
     //preenche aleatoriamente o vetor de pertinencia e atualiza peso e beneficio total
-    for (i = 0; i < 29; i++){
+    for (i = 0; i < 6; i++){
         //srand (time(NULL));
         x = rand()%2;
         ind.pertinencia[i] = x;
@@ -79,7 +79,7 @@ void crossover (individuo populacao[], int tamanho, int Y, int Z){
     for (int filho = Y; filho < 20; filho++){
         pai = rand()% (Y);  //escolhe um pai aleatório entre a elite
         mae = rand()% (Y);  //escolhe uma mãe aleatória entre a elite
-        for(int j = 0; j < 29; j++){    //percorre o vetor de pertinência
+        for(int j = 0; j < 6; j++){    //percorre o vetor de pertinência
             moeda = rand()%2;   //moeda para simular cara ou coroa
             if (moeda == 1){    //pega característica do pai
                 populacao[filho].pertinencia[j] = populacao[pai].pertinencia[j];
@@ -94,7 +94,7 @@ void crossover (individuo populacao[], int tamanho, int Y, int Z){
 void mutacao(individuo populacao[], int tamanho, int Y, int Z){
     int moeda;
     for (int filho = Y; filho < Y+4 ; filho++){ // os quatro primeiros filhos sofreram mutações (20% da população de tamanho 20)
-        for(int j = 0; j < 29; j++){    //percorrer o vertor de pertinência do filho para realizar a mutação
+        for(int j = 0; j < 6; j++){    //percorrer o vertor de pertinência do filho para realizar a mutação
             moeda = rand()%5; //20% de chance de mutar um valor do vetor de pertinência
             if(moeda == 0){   //se decidir mutar...
                 if (populacao[filho].pertinencia[j] == 1){  //troca 1 por 0 no vetor de pertinência
@@ -141,7 +141,7 @@ int main ()
     srand (time(NULL));
 
     //itens da mochila
-    item itens[29];
+    item itens[6];
     itens[0].nome = "Saco de dormir";
     itens[0].peso = 15.00;
     itens[0].beneficio = 15.00;
@@ -210,8 +210,8 @@ int main ()
 
     //imprimir a melhor solução, ou seja populacao[0]
 
-    cout<<"A melhor solução possui os seguintes itens..."<<endl;
-    for (int i = 0; i < 29 ; i++){
+    cout<<"A melhor solução possui os seguintes itens:"<<endl;
+    for (int i = 0; i < 6 ; i++){
         if (populacao[0].pertinencia[i] == 1){
             cout<< itens[i].nome << "  Peso: "<< itens[i].peso << "  Beneficio: " << itens[i].beneficio << endl;
         }
